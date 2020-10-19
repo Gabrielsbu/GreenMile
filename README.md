@@ -1,5 +1,5 @@
 # GreenMile
-Challenge GreenMile with React.JS
+## Challenge GreenMile with React.JS
 
 ### Primeiro precisamos realizar algumas configurações.
 
