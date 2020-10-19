@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { FiPlus } from 'react-icons/fi';
+import { FiArrowLeft } from 'react-icons/fi';
 
 import { Map, TileLayer } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css'
@@ -13,14 +13,22 @@ function UserMap(){
         <div id="page-map">
             <aside>
                 <header>
-                    <h2>Escolha um orfanato na mapa</h2>
-                    <p>Muitas crianças estão esperando sua visita :)</p>
+                    <div className="config-header">
+                        <img src="https://scontent.ffor20-1.fna.fbcdn.net/v/t1.0-9/50644817_1140389362787923_1541726953835331584_n.jpg?_nc_cat=100&_nc_sid=09cbfe&_nc_eui2=AeFdKEvyK_RqH9vedOh1m3eyOBUpQkmasE84FSlCSZqwT9tJEbyvRE3TExU8bmiDBwKra31Q2zHoWZ8l5pAQhRox&_nc_ohc=96XmVeAw17gAX_3IU6t&_nc_ht=scontent.ffor20-1.fna&oh=8bf34fda9a9ad3d4db7227bf9e617197&oe=5FB1620D" alt="Teste"/>
+                        <span>@gabrielsbu</span>
+                    </div>
+
+                    <div className="config-header-infos">
+                        <span>Biografia do usuário</span>
+                        <span>Url do usuário</span>
+                    </div>
                 </header>
 
-                <footer>
-                    <strong>Jaguaruana</strong>
-                    <span>Ceará</span>
-                </footer>
+
+                <main>
+                    <h4>Lista de repositórios Likados</h4>
+                    <span>aqui vai ficar</span>
+                </main>
             </aside>
 
             <Map 
@@ -33,10 +41,11 @@ function UserMap(){
                     url={`https://api.mapbox.com/styles/v1/mapbox/light-v10/tiles/256/{z}/{x}/{y}@2x?access_token=${process.env.REACT_APP_MAPBOX_TOKEN}`}
                 />
             </Map>
-
+            
             <Link to="" className="create-orphanage">
-                <FiPlus size={32} color="#fff"/>
+                <FiArrowLeft size={32} color="#fff"/>
             </Link>
+           
         </div>
     );
 }
