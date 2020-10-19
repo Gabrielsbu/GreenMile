@@ -5,15 +5,14 @@ import { FiPlus } from 'react-icons/fi';
 import { Map, TileLayer } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css'
 
-import '../styles/pages/orphanage.css';
-import mapMarkerImg from '../images/logo.svg';
+import './styles.css';
 
-function OrphanageMap(){
+
+function UserMap(){
     return (
         <div id="page-map">
             <aside>
                 <header>
-                    <img src={mapMarkerImg} alt="Happy"/>
                     <h2>Escolha um orfanato na mapa</h2>
                     <p>Muitas crianças estão esperando sua visita :)</p>
                 </header>
@@ -42,4 +41,4 @@ function OrphanageMap(){
     );
 }
 
-export default OrphanageMap
+export default UserMap;
