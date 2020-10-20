@@ -17,7 +17,7 @@ function Main(){
             <header>
                 <h1>
                     <FiStar size="50" color="#79d96a"/>
-                    GreenSearch
+                    <span>GreenSearch</span> 
                 </h1>
             </header>
 
