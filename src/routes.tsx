@@ -9,7 +9,8 @@ function Routes(){
         <BrowserRouter>
             <Switch>
                 <Route path="/" exact component={Main}/>
-                <Route path="/users" component={UserMap}/>
+                <Route path="/users/:name" component={UserMap}/>
+                <Route path="/users/:name/repos" component={UserMap}/>
             </Switch>
         </BrowserRouter>
     );

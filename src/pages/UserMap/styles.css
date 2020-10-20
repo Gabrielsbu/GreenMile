@@ -7,7 +7,7 @@
 }
 
 #page-map aside {
-  width: 460px;
+  width: 750px;
   background: linear-gradient(329.54deg, #79d96a 10%, #79d96a 100%);
   padding: 50px 80px;
   display: flex;
@@ -34,9 +34,46 @@
 }
 
 #page-map aside main {
-  margin-top: 25px;
+  margin-top: 30px;
   display: flex;
   flex-direction: column;
+}
+
+#page-map aside main h4 {
+  margin-bottom: 20px;
+}
+#page-map .config-dislike {
+  display: flex;
+  margin: 10px 0;
+}
+#page-map .config-dislike p {
+  font-size: 14px;
+}
+#page-map .config-dislike button {
+  background: none;
+  outline: 0;
+  border-radius: 20px;
+
+  display: flex;
+  align-items: center;
+  padding: 0 10px;
+
+  margin-left: 5px;
+  border: 1px solid #fff;
+  color: #fff;
+  cursor: pointer;
+  transition: 0.5s;
+}
+
+#page-map .config-dislike button span {
+  margin-left: 5px;
+  font-size: 14px;
+}
+
+#page-map .config-dislike button:hover {
+  background: #fff;
+  border: 1px solid #fff;
+  color: #79d96a;
 }
 
 #page-map .leaflet-container {

@@ -1,33 +1,102 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import { FiArrowLeft } from 'react-icons/fi';
+import React, { useEffect, useState } from 'react';
+import { Link, useParams } from 'react-router-dom';
+import { FiArrowLeft, FiDelete } from 'react-icons/fi';
 
 import { Map, TileLayer } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css'
 
 import './styles.css';
+import api from '../../services/api';
 
+interface User{
+    id: number;
+    login: string;
+    avatar_url: string;
+    url: string;
+    name: string;
+    bio:string;
+    repos: Array<{
+        id: number;
+        name: string;
+        description: string;
+        url: string;
+        stargazers_count: number;
+    }>
+}
+
+interface Repos {
+    id: number;
+    name: string;
+    stargazers_count: number;
+    owner: Array<{
+        login: string;
+    }>
+}
+
+interface UserParams{
+    name: string;
+}
 
 function UserMap(){
+    const params = useParams<UserParams>();
+    const [user, setUser] = useState<User>();
+    const [list, setList] = useState<Repos[]>([]);
+
+    useEffect(() => {
+         api.get(`users/${params.name}`).then(response => {
+            setUser(response.data)
+        })
+    }, [params.name])
+
+    useEffect(() => {
+        api.get(`users/${params.name}/starred`).then(repositorios => {
+            setList(repositorios.data)
+        })
+    }, [params.name])
+
+    function handleDislike(id: any) {
+
+        console.log(id)
+        const newRepositories = list.map( repo => {
+            return repo.id === id ? { ...repo} : repo
+        })
+        console.log(newRepositories)
+    }
+
+    if(!user) {
+        return <p>Spinner</p>
+    }
+
+    if(!list) {
+        return <p>Carregando ...</p>
+    }
     return (
         <div id="page-map">
             <aside>
                 <header>
                     <div className="config-header">
-                        <img src="https://scontent.ffor20-1.fna.fbcdn.net/v/t1.0-9/50644817_1140389362787923_1541726953835331584_n.jpg?_nc_cat=100&_nc_sid=09cbfe&_nc_eui2=AeFdKEvyK_RqH9vedOh1m3eyOBUpQkmasE84FSlCSZqwT9tJEbyvRE3TExU8bmiDBwKra31Q2zHoWZ8l5pAQhRox&_nc_ohc=96XmVeAw17gAX_3IU6t&_nc_ht=scontent.ffor20-1.fna&oh=8bf34fda9a9ad3d4db7227bf9e617197&oe=5FB1620D" alt="Teste"/>
-                        <span>@gabrielsbu</span>
+                        <img src={user.avatar_url} alt={user.name}/>
+                        <span>@{user.login}</span>
                     </div>
 
                     <div className="config-header-infos">
-                        <span>Biografia do usuário</span>
-                        <span>Url do usuário</span>
+                        <span>{user.bio}</span>
+                        <span>{user.url}</span>
                     </div>
                 </header>
 
 
                 <main>
-                    <h4>Lista de repositórios Likados</h4>
-                    <span>aqui vai ficar</span>
+                    <h4>Stars</h4>
+                    {list.map(rep => {
+                        return (
+                            <div key={rep.id} className="config-dislike">
+                                <p>{rep.name} </p>
+                                <button onClick={() => handleDislike(rep.id)}><FiDelete /><span>Remove</span></button>
+                            </div>
+                        );
+                    })}
+                    
                 </main>
             </aside>
 
