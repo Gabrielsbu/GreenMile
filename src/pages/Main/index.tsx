@@ -5,7 +5,7 @@ import './styles.css';
 import { FiStar } from 'react-icons/fi'
 import { FiSearch } from 'react-icons/fi'
 
-import ImgMain from '../../assets/images/gab.png';
+import ImgMain from '../../assets/images/gab1.png';
 
 
 function Main(){

@@ -1,15 +1,15 @@
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
-import { FiArrowLeft, FiDelete, FiLink } from 'react-icons/fi';
+import { useParams, useHistory } from 'react-router-dom';
 
-import { useHistory } from 'react-router-dom';
-
-import { Map, TileLayer } from 'react-leaflet';
-import 'leaflet/dist/leaflet.css'
+import api from '../../services/api';
 
 import './styles.css';
-import api from '../../services/api';
-import UserDontExist from '../UserDontExists';
+import 'leaflet/dist/leaflet.css'
+
+import { Map, TileLayer } from 'react-leaflet';
+
+import { FiArrowLeft, FiDelete, FiLink } from 'react-icons/fi';
+import { BounceLoader } from 'react-spinners';
 
 interface User{
     id: number;
@@ -43,7 +43,9 @@ interface UserParams{
 function UserMap(){
 
     const { goBack } = useHistory();
+
     const params = useParams<UserParams>();
+
     const [user, setUser] = useState<User>();
     const [list, setList] = useState<Repos[]>([]);
 
@@ -53,35 +55,33 @@ function UserMap(){
         })
     }, [params.name])
 
+    
     useEffect(() => {
         api.get(`users/${params.name}/starred`).then(repositorios => {
             setList(repositorios.data)
         })
     }, [params.name])
+   
 
     function handleDislike(id: any) {
 
-        console.log(id)
         const newRepositories = list.map( repo => {
             return repo.id === id ? { ...repo} : repo
         })
-        console.log(newRepositories)
+        
     }
 
     if(!user) {
-        return <UserDontExist/>
+        
+        return (
+            <div className="spinner">
+                <BounceLoader size={120} color="#79d96a"/>
+            </div>
+        )
     }
-
-    if(!user.login) {
-        return <UserDontExist/>
-    }
-
-    if(!list) {
-        return <p>Carregando ...</p>
-    }
-
 
     return (
+       
         <div className="page-map">
             <header>
                 <div className="profile-desktop">
