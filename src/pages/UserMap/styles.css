@@ -1,101 +1,225 @@
-#page-map {
-  width: 100vw;
-  height: 100vh;
+@media (max-width: 849px) {
+  .page-map {
+    width: 100%;
+    height: 100%;
 
-  position: relative;
-  display: flex;
+    background: #111;
+
+    display: flex;
+    flex-direction: column;
+  }
+
+  .page-map header {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border-bottom: 1px solid #808080;
+    padding: 35px;
+  }
+
+  .page-map header .profile-desktop {
+    display: none;
+  }
+  .page-map header .profile-mobile {
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+  }
+
+  .page-map header .profile-mobile img {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    border: 3px solid #fff;
+    margin-bottom: 10px;
+    margin-right: 20px;
+  }
+
+  .page-map header .profile-mobile button {
+    display: block;
+  }
+
+  .page-map header p {
+    color: #bbbbbb;
+    font-size: 16px;
+    margin-bottom: 10px;
+  }
+
+  .page-map header h4 {
+    margin-bottom: 10px;
+  }
+
+  .page-map header span a {
+    text-decoration: none;
+    color: rgb(7, 108, 223);
+  }
+
+  .page-map header button {
+    width: 54px;
+    height: 54px;
+    background: #79d96a;
+    border-radius: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    border: none;
+    outline: none;
+    transition: background-color 0.2s;
+    display: none;
+  }
+  .page-map header button:hover {
+    background: #3f9c31;
+  }
+
+  .page-map main {
+    margin-top: 100px;
+    display: grid;
+    grid-template-columns: 1.5fr 1fr;
+    padding: 35px;
+  }
+
+  .page-map main .unfavorite {
+    display: flex;
+    flex-direction: column;
+    padding-left: 75px;
+  }
+
+  .page-map main .unfavorite h3 {
+    margin-bottom: 30px;
+  }
+
+  .page-map main .unfavorite div {
+    display: flex;
+  }
+
+  .page-map main .unfavorite div span {
+    display: flex;
+    align-items: center;
+    margin-bottom: 5px;
+  }
+
+  .page-map main .unfavorite div span p {
+    margin-right: 5px;
+  }
+
+  .page-map main .map h3 {
+    margin-bottom: 30px;
+  }
+
+  .page-map main .leaflet-container {
+    height: 450px;
+    width: 100%;
+    border-radius: 1%;
+  }
 }
 
-#page-map aside {
-  width: 750px;
-  height: 100%;
-  background: linear-gradient(329.54deg, #79d96a 10%, #79d96a 100%);
-  padding: 50px 80px;
-  display: flex;
-  flex-direction: column;
-}
+@media (min-width: 850px) {
+  .page-map {
+    width: 100%;
+    height: 100%;
 
-#page-map aside .config-header {
-  display: flex;
-  align-items: flex-end;
-}
+    background: #111;
 
-#page-map aside header div img {
-  width: 150px;
-  height: 150px;
-  border-radius: 50%;
-  border: 2px solid #fff;
-  margin-right: -15px;
-}
+    display: flex;
+    flex-direction: column;
+  }
 
-#page-map aside .config-header-infos {
-  margin-top: 25px;
-  display: flex;
-  flex-direction: column;
-}
+  .page-map header {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid #808080;
+    padding: 35px;
+  }
 
-#page-map aside main {
-  margin-top: 30px;
-  display: flex;
-  flex-direction: column;
-}
+  .page-map header .profile-mobile {
+    display: none;
+  }
 
-#page-map aside main h4 {
-  margin-bottom: 20px;
-}
-#page-map .config-dislike {
-  display: flex;
-  margin: 10px 0;
-}
-#page-map .config-dislike p {
-  font-size: 14px;
-}
-#page-map .config-dislike button {
-  background: none;
-  outline: 0;
-  border-radius: 20px;
+  .page-map header .profile-desktop {
+    display: flex;
+    align-items: center;
+  }
 
-  display: flex;
-  align-items: center;
-  padding: 0 10px;
+  .page-map header .profile-desktop img {
+    width: 130px;
+    height: 130px;
+    border-radius: 50%;
+    border: 3px solid #fff;
+    margin-bottom: 10px;
+    margin-right: 20px;
+  }
 
-  margin-left: 5px;
-  border: 1px solid #fff;
-  color: #fff;
-  cursor: pointer;
-  transition: 0.5s;
-}
+  .page-map header p {
+    color: #bbbbbb;
+    font-size: 16px;
+    margin-bottom: 10px;
+  }
 
-#page-map .config-dislike button span {
-  margin-left: 5px;
-  font-size: 14px;
-}
+  .page-map header h4 {
+    margin-bottom: 10px;
+  }
 
-#page-map .config-dislike button:hover {
-  background: #fff;
-  border: 1px solid #fff;
-  color: #79d96a;
-}
+  .page-map header span a {
+    text-decoration: none;
+    color: rgb(7, 108, 223);
+  }
 
-#page-map .leaflet-container {
-  z-index: 5;
-}
+  .page-map header button {
+    width: 54px;
+    height: 54px;
+    background: #79d96a;
+    border-radius: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    border: none;
+    outline: none;
+    transition: background-color 0.2s;
+  }
+  .page-map header button:hover {
+    background: #3f9c31;
+  }
 
-#page-map .create-orphanage {
-  position: absolute;
-  right: 40px;
-  bottom: 40px;
-  z-index: 10;
-  width: 64px;
-  height: 64px;
-  background: #79d96a;
-  border-radius: 20px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  .page-map main {
+    margin-top: 100px;
+    display: grid;
+    grid-template-columns: 1.5fr 1fr;
+    padding: 35px;
+  }
 
-  transition: background-color 0.2s;
-}
-#page-map .create-orphanage:hover {
-  background: #3f9c31;
+  .page-map main .unfavorite {
+    display: flex;
+    flex-direction: column;
+    padding-left: 75px;
+  }
+
+  .page-map main .unfavorite h3 {
+    margin-bottom: 30px;
+  }
+
+  .page-map main .unfavorite div {
+    display: flex;
+  }
+
+  .page-map main .unfavorite div span {
+    display: flex;
+    align-items: center;
+    margin-bottom: 5px;
+  }
+
+  .page-map main .unfavorite div span p {
+    margin-right: 5px;
+  }
+
+  .page-map main .map h3 {
+    margin-bottom: 30px;
+  }
+
+  .page-map main .leaflet-container {
+    height: 450px;
+    width: 100%;
+    border-radius: 1%;
+  }
 }
