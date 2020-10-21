@@ -9,6 +9,7 @@ import 'leaflet/dist/leaflet.css'
 
 import './styles.css';
 import api from '../../services/api';
+import UserDontExist from '../UserDontExists';
 
 interface User{
     id: number;
@@ -68,7 +69,11 @@ function UserMap(){
     }
 
     if(!user) {
-        return <p>Spinner</p>
+        return <UserDontExist/>
+    }
+
+    if(!user.login) {
+        return <UserDontExist/>
     }
 
     if(!list) {
@@ -111,9 +116,27 @@ function UserMap(){
 
 
             <main>
+
+            <div className="unfavorite">
+
+                <h2>Stars</h2>
+
+                {list.map(rep => {
+                    return (
+                        <div key={rep.id} className="config-unfavorite">
+                            <span>
+                                <p>{rep.name} </p>
+                                <FiDelete onClick={() => handleDislike(rep.id)} /> 
+                            </span>
+                            
+                        </div>
+                    );
+                })}
+                </div>
+
                 <div className="map">
                     
-                    <h3>Localização</h3>
+                    <h2>Localização</h2>
 
                     <Map 
                         center={[-4.8415535,-37.7896551]}
@@ -125,26 +148,6 @@ function UserMap(){
                     />
                     </Map>
                 </div>
-
-                <div className="unfavorite">
-
-                    <h3>Stars</h3>
-                    
-                    {list.map(rep => {
-                        return (
-                            <div key={rep.id} className="config-unfavorite">
-                                <span>
-                                    <p>{rep.name} </p>
-                                    <FiDelete onClick={() => handleDislike(rep.id)} /> 
-                                </span>
-                                
-                            </div>
-                        );
-                    })}
-                </div>
-
-                
-
                 
             </main>
             

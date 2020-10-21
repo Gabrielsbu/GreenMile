@@ -30,7 +30,7 @@
     width: 200px;
     height: 200px;
     border-radius: 50%;
-    border: 3px solid #fff;
+    border: 3px solid #79d96a;
     margin-bottom: 10px;
     margin-right: 20px;
   }
@@ -73,20 +73,23 @@
   }
 
   .page-map main {
-    margin-top: 100px;
-    display: grid;
-    grid-template-columns: 1.5fr 1fr;
-    padding: 35px;
+    margin-top: 60px;
+    display: flex;
+    flex-direction: column;
   }
 
   .page-map main .unfavorite {
     display: flex;
+    height: 60vh;
     flex-direction: column;
-    padding-left: 75px;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 50px;
   }
 
-  .page-map main .unfavorite h3 {
+  .page-map main .unfavorite h2 {
     margin-bottom: 30px;
+    text-align: center;
   }
 
   .page-map main .unfavorite div {
@@ -103,13 +106,15 @@
     margin-right: 5px;
   }
 
-  .page-map main .map h3 {
+  .page-map main .map h2 {
     margin-bottom: 30px;
+    text-align: center;
   }
 
   .page-map main .leaflet-container {
     height: 450px;
-    width: 100%;
+    width: 80%;
+    margin: 10px auto 60px auto;
     border-radius: 1%;
   }
 }
@@ -145,7 +150,7 @@
     width: 130px;
     height: 130px;
     border-radius: 50%;
-    border: 3px solid #fff;
+    border: 3px solid #79d96a;
     margin-bottom: 10px;
     margin-right: 20px;
   }
@@ -195,7 +200,7 @@
     padding-left: 75px;
   }
 
-  .page-map main .unfavorite h3 {
+  .page-map main .unfavorite h2 {
     margin-bottom: 30px;
   }
 
@@ -213,7 +218,7 @@
     margin-right: 5px;
   }
 
-  .page-map main .map h3 {
+  .page-map main .map h2 {
     margin-bottom: 30px;
   }
 
