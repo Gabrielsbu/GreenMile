@@ -18,4 +18,4 @@
 
 ### Tarefas pendentes
 
-#### - Frontend 
+#### - Ao pesquisar o usuário, você irá encontrar um mapa com um marcador indicando o nome do usuário e a cidade que ele mora, porém a localização não está no canto certo, o github disponibiliza apenas o nome da cidade, e não as coordenadas para redirecionar o pin do usuário pelo mapa, ao pesquisar, obtive a informação que o Geocoding do google maps faria isso, converteria a cidade para coordenadas, porém, é pago, então não consegui. 
