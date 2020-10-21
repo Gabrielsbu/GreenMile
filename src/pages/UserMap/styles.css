@@ -7,7 +7,43 @@
   margin: 0 auto;
 }
 
+.dont-search-button {
+  background: #79d96a;
+}
+
+.config-dont-search {
+  position: relative;
+}
+
+.config-dont-search button {
+  position: absolute;
+  top: 30px;
+  right: 30px;
+
+  width: 10%;
+  height: 40px;
+  border-radius: 5%;
+  border: none;
+  outline: 0;
+}
+
 @media (max-width: 849px) {
+  .map-desktop {
+    display: none;
+  }
+
+  .map-mobile {
+    display: block;
+  }
+
+  .repos-desktop {
+    display: none;
+  }
+
+  .repos-mobile {
+    display: block;
+  }
+
   .page-map {
     width: 100%;
     height: 100%;
@@ -23,7 +59,7 @@
     flex-direction: column;
     justify-content: space-between;
     border-bottom: 1px solid #808080;
-    padding: 35px;
+    padding: 35px 0;
   }
 
   .page-map header .profile-desktop {
@@ -32,16 +68,24 @@
   .page-map header .profile-mobile {
     display: flex;
     flex-direction: column;
+
     margin: 0 auto;
+    position: relative;
+    width: 90%;
+  }
+  .page-map header .profile-mobile .config-button {
+    position: absolute;
+    top: 0;
+    right: 0;
   }
 
   .page-map header .profile-mobile img {
-    width: 200px;
-    height: 200px;
+    width: 40%;
+    height: 40%;
     border-radius: 50%;
     border: 3px solid #79d96a;
-    margin-bottom: 10px;
-    margin-right: 20px;
+    margin-bottom: 30px;
+    justify-content: center;
   }
 
   .page-map header .profile-mobile button {
@@ -89,7 +133,7 @@
 
   .page-map main .unfavorite {
     display: flex;
-    height: 60vh;
+    height: 100%;
     flex-direction: column;
     align-items: center;
     justify-content: center;
@@ -99,6 +143,16 @@
   .page-map main .unfavorite h2 {
     margin-bottom: 30px;
     text-align: center;
+  }
+  .map-mobile h2 {
+    margin-bottom: 30px;
+    text-align: center;
+  }
+
+  .map-mobile .leaflet-container {
+    height: 450px;
+    width: 100%;
+    border-radius: 1%;
   }
 
   .page-map main .unfavorite div {
@@ -115,20 +169,71 @@
     margin-right: 5px;
   }
 
-  .page-map main .map h2 {
-    margin-bottom: 30px;
+  .page-map main .map-mobile h2 {
+    margin-bottom: 40px;
     text-align: center;
   }
 
-  .page-map main .leaflet-container {
+  .page-map main .map-mobile .leaflet-container {
     height: 450px;
-    width: 80%;
-    margin: 10px auto 60px auto;
+    width: 100%;
+
     border-radius: 1%;
+  }
+
+  .repos-mobile {
+    display: flex;
+    flex-direction: column;
+    width: 94%;
+    margin: 25px auto;
+  }
+
+  .repos-mobile h2 {
+    margin: 50px 0 30px 0;
+  }
+  .repos-mobile span {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    padding: 5px 0;
+  }
+  .repos-mobile span p {
+    font-size: 14px;
+    margin-right: 10px;
+    width: 70%;
+  }
+  .repos-mobile span button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 0;
+    outline: 0;
+    border-radius: 10px;
+    width: 35%;
+    height: 30px;
+    background: #79d96a;
+    color: #fff;
+    font-size: 14px;
   }
 }
 
 @media (min-width: 850px) {
+  .map-desktop {
+    display: block;
+  }
+
+  .repos-desktop {
+    display: block;
+  }
+
+  .map-mobile {
+    display: none;
+  }
+
+  .repos-mobile {
+    display: none;
+  }
+
   .page-map {
     width: 100%;
     height: 100%;
@@ -199,7 +304,7 @@
   .page-map main {
     margin-top: 100px;
     display: grid;
-    grid-template-columns: 1.5fr 1fr;
+    grid-template-columns: 1fr 1fr;
     padding: 35px;
   }
 
@@ -215,6 +320,7 @@
 
   .page-map main .unfavorite div {
     display: flex;
+    padding-bottom: 5px;
   }
 
   .page-map main .unfavorite div span {
@@ -227,13 +333,41 @@
     margin-right: 5px;
   }
 
-  .page-map main .map h2 {
+  .page-map .map-desktop h2 {
+    text-align: center;
     margin-bottom: 30px;
   }
 
-  .page-map main .leaflet-container {
+  .page-map .map-desktop .leaflet-container {
     height: 450px;
     width: 100%;
-    border-radius: 1%;
+    margin-top: 50px;
+  }
+
+  .repos-desktop h2 {
+    margin-bottom: 30px;
+  }
+  .repos-desktop span {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-bottom: 5px;
+  }
+  .repos-desktop span p {
+    font-size: 18px;
+    margin-right: 10px;
+    width: 65%;
+  }
+  .repos-desktop span button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 0;
+    outline: 0;
+    border-radius: 10px;
+    width: 30%;
+    height: 30px;
+    background: #79d96a;
+    color: #fff;
   }
 }

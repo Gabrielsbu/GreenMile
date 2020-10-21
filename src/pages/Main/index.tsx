@@ -32,11 +32,11 @@ function Main(){
                     </p>
 
                     <div>
-                        <input type="text" placeholder="Insert the username" value={name} onChange={ e => {setName(e.target.value)}}/>
-                        <Link to={`/users/${name}`}>
+                        <input type="text" placeholder="Insert the username" value={name} onChange={ e => {setName(e.target.value)}} required/>
+                        {name ? (<Link to={`/users/${name}`}>
                             <FiSearch />
                             <span>Search user</span> 
-                        </Link>
+                        </Link>) : ''}
                     </div>
 
                 </div>

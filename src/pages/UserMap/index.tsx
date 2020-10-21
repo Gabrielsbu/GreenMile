@@ -6,10 +6,11 @@ import api from '../../services/api';
 import './styles.css';
 import 'leaflet/dist/leaflet.css'
 
-import { Map, TileLayer } from 'react-leaflet';
+import { Map, TileLayer, Marker, Popup} from 'react-leaflet';
 
-import { FiArrowLeft, FiDelete, FiLink } from 'react-icons/fi';
+import { FiArrowLeft, FiStar, FiLink } from 'react-icons/fi';
 import { BounceLoader } from 'react-spinners';
+import mapIcon from '../../utils/mapIcon';
 
 interface User{
     id: number;
@@ -17,6 +18,7 @@ interface User{
     avatar_url: string;
     html_url: string;
     name: string;
+    location: string;
     bio:string;
     repos: Array<{
         id: number;
@@ -27,7 +29,7 @@ interface User{
     }>
 }
 
-interface Repos {
+interface RepositoriesStar {
     id: number;
     name: string;
     stargazers_count: number;
@@ -39,6 +41,12 @@ interface Repos {
 interface UserParams{
     name: string;
 }
+interface Repositories{
+    id: number;
+    name: string;
+    favorite: boolean;
+
+}
 
 function UserMap(){
 
@@ -47,36 +55,51 @@ function UserMap(){
     const params = useParams<UserParams>();
 
     const [user, setUser] = useState<User>();
-    const [list, setList] = useState<Repos[]>([]);
+    const [listStars, setListStars] = useState<RepositoriesStar[]>([]);
+    const [repositories, setRepositories] = useState<Repositories[]>([]);
 
     useEffect(() => {
          api.get(`users/${params.name}`).then(response => {
             setUser(response.data)
         })
-    }, [params.name])
 
-    
-    useEffect(() => {
-        api.get(`users/${params.name}/starred`).then(repositorios => {
-            setList(repositorios.data)
+        api.get(`users/${params.name}/starred`).then(stars => {
+            setListStars(stars.data)
+        })
+
+        api.get(`users/${params.name}/repos`).then(repositorios => {
+            setRepositories(repositorios.data)
         })
     }, [params.name])
    
 
     function handleDislike(id: any) {
 
-        const newRepositories = list.map( repo => {
-            return repo.id === id ? { ...repo} : repo
+        const newRepositories = repositories.map( repo => {
+            return repo.id === id ? { ...repo, favorite: !repo.favorite} : repo
+            
         })
-        
+
+        setRepositories(newRepositories);
     }
 
     if(!user) {
         
         return (
-            <div className="spinner">
-                <BounceLoader size={120} color="#79d96a"/>
+            <>
+
+            <div className="config-dont-search">
+                <button className="dont-search-button" onClick={goBack}>
+                        <FiArrowLeft size={32} color="#fff"/>
+                </button>
+            
+
+                <div className="spinner">
+                    <BounceLoader size={120} color="#79d96a"/>
+                </div>
             </div>
+
+            </>
         )
     }
 
@@ -109,7 +132,7 @@ function UserMap(){
                     
                 </div>
                 
-                <button className="config-button" onClick={goBack}>
+                <button onClick={goBack}>
                     <FiArrowLeft size={32} color="#fff"/>
                 </button>
             </header>
@@ -117,16 +140,16 @@ function UserMap(){
 
             <main>
 
-            <div className="unfavorite">
+                <div className="unfavorite">
 
-                <h2>Stars</h2>
+                <h2>Repositórios (Stars)</h2>
 
-                {list.map(rep => {
+                {listStars.map(rep => {
                     return (
-                        <div key={rep.id} className="config-unfavorite">
+                        <div key={rep.id}>
                             <span>
                                 <p>{rep.name} </p>
-                                <FiDelete onClick={() => handleDislike(rep.id)} /> 
+                                
                             </span>
                             
                         </div>
@@ -134,7 +157,23 @@ function UserMap(){
                 })}
                 </div>
 
-                <div className="map">
+                <div className="repos-desktop">
+                
+                    <h2>Repositórios</h2>
+                    {repositories.map(repo => {
+                            return (
+                                <div key={repo.id}>
+                                    <span>
+                                        <p>{repo.name} {repo.favorite && <strong>(Favorito)</strong>} </p>
+                                        <button onClick={() => handleDislike(repo.id)} > <FiStar  /> Favoritar</button>
+                                    </span>
+                                    
+                                </div>
+                            );
+                        })}
+                </div>
+
+                <div className="map-mobile">
                     
                     <h2>Localização</h2>
 
@@ -146,10 +185,66 @@ function UserMap(){
                     <TileLayer 
                         url={`https://api.mapbox.com/styles/v1/mapbox/light-v10/tiles/256/{z}/{x}/{y}@2x?access_token=${process.env.REACT_APP_MAPBOX_TOKEN}`}
                     />
+
+                    <Marker 
+                            icon={mapIcon}
+                            position={[-4.8415535,-37.7896551]}
+                        >
+                            <Popup closeButton={false} minWidth={240} maxWidth={240} className="map-popup"
+                            >   
+                                {user.name} - {user.location}
+                        
+                            </Popup>
+
+                        </Marker> 
                     </Map>
                 </div>
                 
             </main>
+
+
+            <div className="repos-mobile">
+                
+                <h2>Repositórios</h2>
+                {repositories.map(repo => {
+                        return (
+                            <div key={repo.id}>
+                                <span>
+                                    <p>{repo.name} {repo.favorite && <strong>(Favorito)</strong>} </p>
+                                    <button onClick={() => handleDislike(repo.id)} > <FiStar  /> Favoritar</button>
+                                </span>
+                                
+                            </div>
+                        );
+                    })}
+            </div>
+
+            <div className="map-desktop">
+                    
+                    <h2>Localização</h2>
+
+                    <Map 
+                        center={[-4.8415535,-37.7896551]}
+                        zoom={14}
+                    >
+                    
+                    <TileLayer 
+                        url={`https://api.mapbox.com/styles/v1/mapbox/light-v10/tiles/256/{z}/{x}/{y}@2x?access_token=${process.env.REACT_APP_MAPBOX_TOKEN}`}
+                    />
+
+                    <Marker 
+                            icon={mapIcon}
+                            position={[-4.8415535,-37.7896551]}
+                        >
+                            <Popup closeButton={false} minWidth={240} maxWidth={240} className="map-popup"
+                            >   
+                                {user.name} - {user.location}
+                        
+                            </Popup>
+
+                        </Marker> 
+                    </Map>
+                </div>
             
         </div>
     );
