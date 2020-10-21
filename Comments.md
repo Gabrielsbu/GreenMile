@@ -1,5 +1,1 @@
-Ao utilizar a api do Github, quando ele pega as informações do usuário, ela traz o nome da cidade da pessoa, eu utilizo o mapbox, e não sabia marcar o pin passando o nome da cidade, apenas passando a latitude e longitude.
-
-Eu ia utilizar até o Geolocation do google maps mas era pago.
-
-O que eu pensei foi em utilizar a geolocation para passar a user.location do usuario, converter em latitude e longitude e passar como parametro do mapbox, assim, eu conseguiria pegar a cidade exata do usuário.
+Mapa - Ao pesquisar o usuário, você irá encontrar um mapa com um marcador indicando o nome do usuário e a cidade que ele mora, porém a localização não está no canto certo, o github disponibiliza apenas o nome da cidade e não as coordenadas para redirecionar o pin do usuário pelo mapa, ao pesquisar, obtive a informação que o Geocoding do google maps faria isso, converteria a cidade para coordenadas, porém, é pago, então não consegui e não encontrei outra forma para fazer.
